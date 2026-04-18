@@ -39,6 +39,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolidIcon } from "@heroicons/react/24/solid";
 
+// API Base URL
+const API_BASE_URL = "https://e-commerce-backend-2-4b0u.onrender.com";
+
 // Navigation Categories with paths
 const navCategories = [
   { name: "For You", path: "/" },
@@ -286,12 +289,12 @@ export default function HomePage() {
     );
   };
 
-  // Fetch cart count from backend
+  // Fetch cart count from backend - FIXED: Changed from POST to GET
   const fetchCartCount = async () => {
     if (!userId) return;
     
     try {
-      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/cart/${userId}`);
+      const response = await axios.get(`${API_BASE_URL}/cart/${userId}`);
       setCartCount(response.data.item_count);
     } catch (error) {
       console.error("Error fetching cart count:", error);
@@ -357,7 +360,7 @@ export default function HomePage() {
       localStorage.setItem("wishlist", JSON.stringify(wishlist.filter(id => id !== productId)));
       
       try {
-        await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com/wishlist/${userId}/${productId}`);
+        await axios.delete(`${API_BASE_URL}/wishlist/${userId}/${productId}`);
       } catch (error) {
         console.error("Error removing from wishlist:", error);
       }
@@ -368,7 +371,7 @@ export default function HomePage() {
       localStorage.setItem("wishlist", JSON.stringify([...wishlist, productId]));
       
       try {
-        await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/wishlist/add", {
+        await axios.post(`${API_BASE_URL}/wishlist/add`, {
           user_id: parseInt(userId!),
           product_id: product.id,
           product_name: product.name,
@@ -391,7 +394,7 @@ export default function HomePage() {
     }
   };
 
-  // Add to cart with backend integration
+  // Add to cart with backend integration - CORRECT: POST method
   const addToCart = async (product: any) => {
     if (!isLoggedIn) {
       toast.error("Please login to add items to cart");
@@ -401,7 +404,7 @@ export default function HomePage() {
     
     setIsLoading(true);
     try {
-      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/cart/add", null, {
+      await axios.post(`${API_BASE_URL}/cart/add`, null, {
         params: {
           user_id: userId,
           product_id: product.id,
