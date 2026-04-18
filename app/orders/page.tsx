@@ -287,7 +287,7 @@ export default function OrdersPage() {
     );
   };
 
-  const retryLocation = () => { setRetryCount(0); getUserLocation(); toast.info("Retrying location access..."); };
+  const retryLocation = () => { setRetryCount(0); getUserLocation(); toast("Retrying location access..."); };
 
   useEffect(() => { getUserLocation(); return () => { if (watchIdRef.current) { try { navigator.geolocation.clearWatch(watchIdRef.current); } catch (e) {} watchIdRef.current = null; } }; }, []);
 
