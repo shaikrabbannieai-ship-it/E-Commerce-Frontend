@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { Suspense } from 'react';
 import QRCode from "qrcode";
 
 declare global {
@@ -22,14 +23,11 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   ArrowPathIcon,
-  QrCodeIcon,
-  DocumentDuplicateIcon,
   WalletIcon,
 } from "@heroicons/react/24/outline";
 
 // Razorpay Keys
 const RAZORPAY_KEY_ID = "rzp_test_Sec3sayV6NwGlY";
-
 const MERCHANT_NAME = "ShopHub";
 
 // Payment Methods Configuration
@@ -105,7 +103,7 @@ const wallets = [
   { code: "olamoney", name: "Ola Money", icon: "📱" },
 ];
 
-export default function PaymentPage() {
+function PaymentContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -236,7 +234,6 @@ export default function PaymentPage() {
 
       // Method-specific configurations
       if (method === "card") {
-        // Default card payment - works automatically
         options.method = "card";
       } 
       else if (method === "netbanking") {
@@ -720,5 +717,20 @@ export default function PaymentPage() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading payment page...</p>
+        </div>
+      </div>
+    }>
+      <PaymentContent />
+    </Suspense>
   );
 }
