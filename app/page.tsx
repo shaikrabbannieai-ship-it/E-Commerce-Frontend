@@ -291,7 +291,7 @@ export default function HomePage() {
     if (!userId) return;
     
     try {
-      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/nder.com/nder.com/nder.com//cart/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/cart/${userId}`);
       setCartCount(response.data.item_count);
     } catch (error) {
       console.error("Error fetching cart count:", error);
