@@ -63,7 +63,7 @@ export default function CartPage() {
 
   const fetchCart = async () => {
     try {
-      const response = await axios.get(`https://ecommerce-backend.onrender.com/cart/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//cart/${userId}`);
       setCart(response.data);
     } catch (error) {
       console.error("Error fetching cart:", error);
@@ -76,7 +76,7 @@ export default function CartPage() {
   // ✅ Fetch saved address from database
   const fetchSavedAddress = async () => {
     try {
-      const response = await axios.get(`https://ecommerce-backend.onrender.com/user/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//user/${userId}`);
       if (response.data.address) {
         setAddress({
           fullName: response.data.full_name || "",
@@ -95,7 +95,7 @@ export default function CartPage() {
   // ✅ Save address to database
   const saveAddressToDatabase = async () => {
     try {
-      await axios.put(`https://ecommerce-backend.onrender.com/user/${userId}`, {
+      await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com//user/${userId}`, {
         full_name: address.fullName,
         phone: address.phone,
         address: {
@@ -120,7 +120,7 @@ export default function CartPage() {
     }
 
     try {
-      await axios.put(`https://ecommerce-backend.onrender.com/cart/update/${itemId}`, null, {
+      await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com//cart/update/${itemId}`, null, {
         params: { quantity: newQuantity }
       });
       fetchCart();
@@ -132,7 +132,7 @@ export default function CartPage() {
 
   const removeItem = async (itemId: number) => {
     try {
-      await axios.delete(`https://ecommerce-backend.onrender.com/cart/remove/${itemId}`);
+      await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com//cart/remove/${itemId}`);
       fetchCart();
       toast.success("Item removed");
     } catch (error) {

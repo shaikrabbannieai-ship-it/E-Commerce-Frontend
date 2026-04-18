@@ -111,7 +111,7 @@ export default function Login() {
     
     try {
       // Make actual API call to your backend
-      const response = await axios.post("https://ecommerce-backend.onrender.com/login", {
+      const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//login", {
         email: data.email,
         password: data.password,
       });

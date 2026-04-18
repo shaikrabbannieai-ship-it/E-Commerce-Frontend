@@ -291,7 +291,7 @@ export default function HomePage() {
     if (!userId) return;
     
     try {
-      const response = await axios.get(`https://ecommerce-backend.onrender.com/cart/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/nder.com/nder.com/nder.com//cart/${userId}`);
       setCartCount(response.data.item_count);
     } catch (error) {
       console.error("Error fetching cart count:", error);
@@ -357,7 +357,7 @@ export default function HomePage() {
       localStorage.setItem("wishlist", JSON.stringify(wishlist.filter(id => id !== productId)));
       
       try {
-        await axios.delete(`https://ecommerce-backend.onrender.com/wishlist/${userId}/${productId}`);
+        await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com//wishlist/${userId}/${productId}`);
       } catch (error) {
         console.error("Error removing from wishlist:", error);
       }
@@ -368,7 +368,7 @@ export default function HomePage() {
       localStorage.setItem("wishlist", JSON.stringify([...wishlist, productId]));
       
       try {
-        await axios.post("https://ecommerce-backend.onrender.com/wishlist/add", {
+        await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//wishlist/add", {
           user_id: parseInt(userId!),
           product_id: product.id,
           product_name: product.name,
@@ -401,7 +401,7 @@ export default function HomePage() {
     
     setIsLoading(true);
     try {
-      await axios.post("https://ecommerce-backend.onrender.com/cart/add", null, {
+      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/nder.com/nder.com//cart/add", null, {
         params: {
           user_id: userId,
           product_id: product.id,

@@ -158,7 +158,7 @@ export default function ProfilePage() {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(`https://ecommerce-backend.onrender.com/orders/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//orders/${userId}`);
       setOrders(response.data.orders || []);
     } catch (error) {
       console.error("Error fetching orders:", error);
@@ -184,7 +184,7 @@ export default function ProfilePage() {
 const handleUpdateProfile = async () => {
   setIsLoading(true);
   try {
-    const response = await axios.put(`https://ecommerce-backend.onrender.com/user/${userId}`, {
+    const response = await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com//user/${userId}`, {
       full_name: editForm.full_name,
       phone: editForm.phone,
       date_of_birth: editForm.date_of_birth,

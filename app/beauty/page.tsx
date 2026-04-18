@@ -370,7 +370,7 @@ export default function BeautyPage() {
     if (!userId) return;
     
     try {
-      const response = await axios.get(`https://ecommerce-backend.onrender.com/cart/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/nder.com/nder.com//cart/${userId}`);
       const cartData = response.data;
       
       const cartItems = cartData.items.map((item: any) => ({
@@ -406,7 +406,7 @@ export default function BeautyPage() {
     
     setIsLoading(true);
     try {
-      await axios.post("https://ecommerce-backend.onrender.com/cart/add", null, {
+      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//cart/add", null, {
         params: {
           user_id: userId,
           product_id: product.id,
