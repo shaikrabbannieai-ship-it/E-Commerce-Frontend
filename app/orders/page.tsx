@@ -967,7 +967,7 @@ export default function OrdersPage() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className={`px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 border ${getStatusColor(order.order_status)}`}>{getStatusIcon(order.order_status)}<span>{getStatusText(order.order_status)}</span></div>
-                      <button onClick={() => { setSelectedOrder(order); if (order.order_status === "out_for_delivery" && order.delivery_partner) startRealTimeTracking(order); else if (order.order_status === "confirmed" || order.order_status === "processing") toast.info("Tracking will be available once order is out for delivery"); }} className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition"><EyeIcon className="w-4 h-4" /><span>Track Order</span></button>
+                      <button onClick={() => { setSelectedOrder(order); if (order.order_status === "out_for_delivery" && order.delivery_partner) startRealTimeTracking(order); else if (order.order_status === "confirmed" || order.order_status === "processing") toast("Tracking will be available once order is out for delivery"); }} className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition"><EyeIcon className="w-4 h-4" /><span>Track Order</span></button>
                     </div>
                   </div>
                 </div>
