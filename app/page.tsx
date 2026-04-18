@@ -768,7 +768,7 @@ export default function HomePage() {
             <div key={offer.id} className="relative rounded-lg overflow-hidden cursor-pointer group">
               <img src={offer.image} alt={offer.name} className="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <div className="text-white"><p className="text-sm font-semibold">{offer.tag}</p><p className="text-xl font-bold">{offer.name}</p><p className="text-lg">From ₹{offer.price}</p></div>
+                <div className="text-white"><p className="text-sm font-semibold">{offer.discount}% OFF</p><p className="text-xl font-bold">{offer.name}</p><p className="text-lg">From ₹{offer.price}</p></div>
               </div>
             </div>
           ))}
