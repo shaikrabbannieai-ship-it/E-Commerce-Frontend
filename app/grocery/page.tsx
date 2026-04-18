@@ -240,7 +240,7 @@ export default function GroceryPage() {
   const fetchCartFromBackend = async () => {
     if (!userId) return;
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/cart/${userId}`);
+      const response = await axios.get(`https://ecommerce-backend.onrender.com/cart/${userId}`);
       const cartItems = response.data.items.map((item: any) => ({
         id: item.product_id,
         name: item.product_name,
@@ -266,7 +266,7 @@ export default function GroceryPage() {
     
     setIsLoading(true);
     try {
-      await axios.post("http://127.0.0.1:8000/cart/add", null, {
+      await axios.post("https://ecommerce-backend.onrender.com/cart/add", null, {
         params: {
           user_id: userId,
           product_id: product.id,
@@ -301,14 +301,14 @@ export default function GroceryPage() {
       toast.success("Removed from wishlist");
       localStorage.setItem("wishlist", JSON.stringify(wishlist.filter(id => id !== productId)));
       try {
-        await axios.delete(`http://127.0.0.1:8000/wishlist/${userId}/${productId}`);
+        await axios.delete(`https://ecommerce-backend.onrender.com/wishlist/${userId}/${productId}`);
       } catch (error) {}
     } else {
       setWishlist([...wishlist, productId]);
       toast.success("Added to wishlist");
       localStorage.setItem("wishlist", JSON.stringify([...wishlist, productId]));
       try {
-        await axios.post("http://127.0.0.1:8000/wishlist/add", {
+        await axios.post("https://ecommerce-backend.onrender.com/wishlist/add", {
           user_id: parseInt(userId!),
           product_id: product.id,
           product_name: product.name,

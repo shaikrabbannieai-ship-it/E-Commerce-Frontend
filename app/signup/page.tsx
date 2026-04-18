@@ -114,7 +114,7 @@ export default function Signup() {
   const loadingToast = toast.loading("Creating your account...");
 
   try {
-    const response = await axios.post("http://127.0.0.1:8000/signup", {
+    const response = await axios.post("https://ecommerce-backend.onrender.com/signup", {
       full_name: fullName,
       email: email,
       password: password,
