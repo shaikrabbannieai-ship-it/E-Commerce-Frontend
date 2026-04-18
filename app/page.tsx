@@ -401,7 +401,7 @@ export default function HomePage() {
     
     setIsLoading(true);
     try {
-      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/nder.com/nder.com//cart/add", null, {
+      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/cart/add", null, {
         params: {
           user_id: userId,
           product_id: product.id,
