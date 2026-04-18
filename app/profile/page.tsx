@@ -128,7 +128,7 @@ export default function ProfilePage() {
         },
         created_at: "2024-01-15T10:30:00Z",
         last_login: new Date().toISOString(),
-        profile_picture: null,
+        profile_picture: "",
       };
       
       setUserData(demoUser);
