@@ -34,7 +34,6 @@ import {
   FaceSmileIcon,
   PaintBrushIcon,
   ScissorsIcon,
-  DropletIcon,
   SunIcon,
   MoonIcon,
   BoltIcon,
