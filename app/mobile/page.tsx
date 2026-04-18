@@ -173,7 +173,7 @@ const fetchCartFromBackend = async () => {
   if (!userId) return;
   
   try {
-    const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//cart/${userId}`);
+    const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/art/${userId}`);
     const cartData = response.data;
     
     // Transform backend cart data to frontend format
@@ -211,7 +211,7 @@ const addToCartBackend = async (product: any) => {
   
   setIsLoading(true);
   try {
-    const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//cart/add", null, {
+    const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/art/add", null, {
       params: {
         user_id: userId,
         product_id: product.id,
@@ -265,7 +265,7 @@ const updateQuantityBackend = async (cartItemId: number, newQuantity: number) =>
 // Remove from cart backend
 const removeFromCartBackend = async (cartItemId: number, productId: number) => {
   try {
-    await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com//cart/remove/${cartItemId}`);
+    await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com/art/remove/${cartItemId}`);
     await fetchCartFromBackend();
     toast.success("Item removed from cart");
   } catch (error) {

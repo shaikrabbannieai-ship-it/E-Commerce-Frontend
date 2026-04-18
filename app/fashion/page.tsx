@@ -401,7 +401,7 @@ export default function FashionPage() {
     if (!userId) return;
     
     try {
-      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//cart/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/cart/${userId}`);
       const cartData = response.data;
       
       const cartItems = cartData.items.map((item: any) => ({
@@ -437,7 +437,7 @@ export default function FashionPage() {
     
     setIsLoading(true);
     try {
-      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//cart/add", null, {
+      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/cart/add", null, {
         params: {
           user_id: userId,
           product_id: product.id,

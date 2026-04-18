@@ -59,7 +59,7 @@ export default function WishlistPage() {
   const fetchWishlist = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//wishlist/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/wishlist/${userId}`);
       
       // ✅ Handle both response formats
       let items = [];
@@ -112,7 +112,7 @@ export default function WishlistPage() {
     toast.success("Removed from wishlist");
     
     try {
-      await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com//wishlist/${userId}/${productId}`);
+      await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com/wishlist/${userId}/${productId}`);
     } catch (error) {
       console.error("Error removing from wishlist:", error);
     }
@@ -121,7 +121,7 @@ export default function WishlistPage() {
   const addToCart = async (item: WishlistItem) => {
     setIsAddingToCart(item.id);
     try {
-      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//cart/add", null, {
+      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/cart/add", null, {
         params: {
           user_id: userId,
           product_id: item.id,
@@ -168,7 +168,7 @@ export default function WishlistPage() {
       const item = wishlistItems.find(i => i.id === itemId);
       if (item) {
         try {
-          await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//cart/add", null, {
+          await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/cart/add", null, {
             params: {
               user_id: userId,
               product_id: item.id,

@@ -153,7 +153,7 @@ function PaymentContent() {
   const fetchOrderDetails = async () => {
     if (!userId) return;
     try {
-      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//cart/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/cart/${userId}`);
       setOrderDetails(response.data);
     } catch (error) {
       console.error("Error fetching order details:", error);
@@ -196,7 +196,7 @@ function PaymentContent() {
     
     try {
       // Create order on backend
-      const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//create-razorpay-order", {
+      const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/create-razorpay-order", {
         amount: amount,
         currency: "INR",
         receipt: `order_${Date.now()}`
@@ -289,7 +289,7 @@ function PaymentContent() {
     setIsLoading(true);
     try {
       const address = JSON.parse(localStorage.getItem("shipping_address") || "{}");
-      const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//verify-payment", {
+      const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/verify-payment", {
         razorpay_order_id: razorpayResponse.razorpay_order_id,
         razorpay_payment_id: razorpayResponse.razorpay_payment_id,
         razorpay_signature: razorpayResponse.razorpay_signature,
@@ -327,7 +327,7 @@ function PaymentContent() {
     setIsLoading(true);
     try {
       const address = JSON.parse(localStorage.getItem("shipping_address") || "{}");
-      const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//order/create", {
+      const response = await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/order/create", {
         user_id: parseInt(userId),
         shipping_address: address,
         payment_method: "cod",

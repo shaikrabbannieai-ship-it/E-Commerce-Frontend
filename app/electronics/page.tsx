@@ -108,7 +108,7 @@ export default function ElectronicsPage() {
     }
     setIsLoading(true);
     try {
-      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//cart/add", null, {
+      await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/cart/add", null, {
         params: { user_id: userId, product_id: product.id, product_name: product.name, product_price: product.price, product_image: product.image, quantity: 1 }
       });
       toast.success(`${product.name} added to cart!`, { icon: "📱" });
@@ -127,13 +127,13 @@ export default function ElectronicsPage() {
       setWishlist(wishlist.filter(id => id !== productId));
       toast.success("Removed from wishlist");
       localStorage.setItem("wishlist", JSON.stringify(wishlist.filter(id => id !== productId)));
-      try { await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com//wishlist/${userId}/${productId}`); } catch (error) {}
+      try { await axios.delete(`https://e-commerce-backend-2-4b0u.onrender.com/wishlist/${userId}/${productId}`); } catch (error) {}
     } else {
       setWishlist([...wishlist, productId]);
       toast.success("Added to wishlist");
       localStorage.setItem("wishlist", JSON.stringify([...wishlist, productId]));
       try {
-        await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//wishlist/add", {
+        await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/wishlist/add", {
           user_id: parseInt(userId!), product_id: product.id, product_name: product.name,
           product_price: product.price, product_original_price: product.originalPrice,
           product_discount: product.discount, product_rating: product.rating,

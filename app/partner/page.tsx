@@ -89,13 +89,13 @@ export default function PartnerPage() {
   };
 
   const updateDeliveryLocation = async (lat: number, lng: number) => {
-    try { await axios.post("https://e-commerce-backend-2-4b0u.onrender.com//delivery/update-location", { partner_id: DELIVERY_PARTNER.id, lat, lng }); } catch (error) {}
+    try { await axios.post("https://e-commerce-backend-2-4b0u.onrender.com/delivery/update-location", { partner_id: DELIVERY_PARTNER.id, lat, lng }); } catch (error) {}
   };
 
   const fetchAssignedOrders = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//orders/delivery/${DELIVERY_PARTNER.id}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/orders/delivery/${DELIVERY_PARTNER.id}`);
       const ordersData = response.data.orders || [];
       setOrders(ordersData);
     } catch (error) {
@@ -144,7 +144,7 @@ export default function PartnerPage() {
 
   const updateOrderStatus = async (orderId: number, status: string) => {
     try { 
-      await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com//order/update-status/${orderId}?status=${status}`); 
+      await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com/order/update-status/${orderId}?status=${status}`); 
       toast.success(`Order status updated to ${status}`); 
       fetchAssignedOrders(); 
     } catch (error) {
@@ -162,13 +162,13 @@ export default function PartnerPage() {
     
     try {
       // First, verify the OTP with backend
-      const verifyResponse = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com//order/verify-otp/${orderToDeliver?.id}`, {
+      const verifyResponse = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com/order/verify-otp/${orderToDeliver?.id}`, {
         otp: enteredOtp
       });
       
       if (verifyResponse.data.valid) {
         // If OTP is valid, complete the delivery
-        await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com//order/deliver/${orderToDeliver?.id}`);
+        await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com/order/deliver/${orderToDeliver?.id}`);
         
         toast.success("OTP verified! Order delivered successfully! 🎉");
         setShowOtpModal(false);
@@ -196,7 +196,7 @@ export default function PartnerPage() {
   const markAsOutForDelivery = async (orderId: number) => {
     try {
       // Call backend to mark order as out for delivery and generate OTP
-      const response = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com//order/out-for-delivery/${orderId}`);
+      const response = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com/order/out-for-delivery/${orderId}`);
       const otp = response.data.otp;
       
       toast.success(`Order #${orderId} is now Out for Delivery!`, { duration: 10000, icon: "🚚" });

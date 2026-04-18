@@ -304,11 +304,11 @@ export default function OrdersPage() {
   const fetchOrders = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//orders/${userId}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/orders/${userId}`);
       const ordersData = response.data.orders || [];
       
       // Fetch user details
-      const userResponse = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//user/${userId}`);
+      const userResponse = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/user/${userId}`);
       const userData = userResponse.data;
       
       const enhancedOrders = ordersData.map((order: Order, index: number) => {
@@ -658,7 +658,7 @@ export default function OrdersPage() {
       return;
     }
     try {
-      await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com//order/rate/${selectedOrder?.id}`, {
+      await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com/order/rate/${selectedOrder?.id}`, {
         rating: rating,
         comment: ratingComment
       });
@@ -690,7 +690,7 @@ export default function OrdersPage() {
     
     try {
       await axios.post(
-        `https://e-commerce-backend-2-4b0u.onrender.com//order/return/${selectedOrder?.id}`,
+        `https://e-commerce-backend-2-4b0u.onrender.com/order/return/${selectedOrder?.id}`,
         { reason: finalReason },
         {
           headers: {
@@ -737,7 +737,7 @@ export default function OrdersPage() {
     if (otpResendCountdown > 0) return;
     
     try {
-      const response = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com//order/resend-otp/${selectedOrder?.id}`);
+      const response = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com/order/resend-otp/${selectedOrder?.id}`);
       const newOtp = response.data.otp;
       
       setSelectedOrder(prev => prev ? { ...prev, delivery_otp: newOtp } : prev);
@@ -757,12 +757,12 @@ export default function OrdersPage() {
     }
     
     try {
-      const verifyResponse = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com//order/verify-otp/${selectedOrder?.id}`, {
+      const verifyResponse = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com/order/verify-otp/${selectedOrder?.id}`, {
         otp: enteredOtp
       });
       
       if (verifyResponse.data.valid) {
-        await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com//order/deliver/${selectedOrder?.id}`);
+        await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com/order/deliver/${selectedOrder?.id}`);
         toast.success("OTP verified! Order delivered successfully! 🎉", { duration: 5000, icon: "✅" });
         sendNotification("Order Delivered", `Your order ${selectedOrder?.order_number} has been delivered!`);
         setShowOtpModal(false);
@@ -826,7 +826,7 @@ export default function OrdersPage() {
 
   const cancelOrder = async (orderId: number) => {
     try {
-      await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com//order/cancel/${orderId}`);
+      await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com/order/cancel/${orderId}`);
       toast.success("Order cancelled successfully");
       fetchOrders();
     } catch (error: any) {
@@ -836,8 +836,8 @@ export default function OrdersPage() {
 
   const simulateManualDelivery = async (orderId: number) => {
     try {
-      await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com//order/update-status/${orderId}?status=out_for_delivery`, {}, { headers: { 'Content-Type': 'application/json' } });
-      const otpResponse = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com//order/generate-otp/${orderId}`);
+      await axios.put(`https://e-commerce-backend-2-4b0u.onrender.com/order/update-status/${orderId}?status=out_for_delivery`, {}, { headers: { 'Content-Type': 'application/json' } });
+      const otpResponse = await axios.post(`https://e-commerce-backend-2-4b0u.onrender.com/order/generate-otp/${orderId}`);
       const otp = otpResponse.data.otp;
       setOrders(prevOrders => prevOrders.map(order => order.id === orderId ? { ...order, order_status: "out_for_delivery", delivery_otp: otp } : order));
       toast.success(`Order #${orderId} is now Out for Delivery!`, { duration: 10000, icon: "🚚" });

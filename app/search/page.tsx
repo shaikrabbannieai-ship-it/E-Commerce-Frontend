@@ -75,7 +75,7 @@ export default function SearchBar({ onSearch, placeholder = "Search for Products
     try {
       // For now, use local product data
       // In production, call your backend API
-      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com//search?q=${encodeURIComponent(query)}`);
+      const response = await axios.get(`https://e-commerce-backend-2-4b0u.onrender.com/search?q=${encodeURIComponent(query)}`);
       setSearchResults(response.data.results || []);
     } catch (error) {
       console.error("Search error:", error);
